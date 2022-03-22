@@ -5,13 +5,12 @@
  */
 package com.maoyang.enforce.annotation;
 
-import com.maoyang.enforce.ext.IIdentityResolver;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.*;
 
 /**
- * 业务前台身份，需要实现{@link IIdentityResolver}接口.
+ * 业务前台身份，注意需要实现IIdentityResolver接口.
  * <p>
  * <p>垂直业务是不会叠加的，而是互斥的，他们比较的维度是单一的、固定的</p>
  */

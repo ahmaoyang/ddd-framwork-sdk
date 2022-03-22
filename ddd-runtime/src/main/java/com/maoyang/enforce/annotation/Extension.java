@@ -21,16 +21,10 @@ import java.lang.annotation.*;
 @Component
 public @interface Extension {
 
-    /**
-     * The value may indicate a suggestion for a logical component name,
-     * to be turned into a Spring bean in case of an autodetected component.
-     *
-     * @return the suggested component name, if any
-     */
     @AliasFor(annotation = Component.class, attribute = "value") String value() default "";
 
     /**
-     * 扩展点编号，bind to {@link Pattern#code()} or {@link Partner#code()}.
+     * 扩展点编号
      */
     String code();
 

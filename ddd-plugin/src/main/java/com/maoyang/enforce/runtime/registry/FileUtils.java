@@ -7,7 +7,6 @@ package com.maoyang.enforce.runtime.registry;
 
 import java.io.*;
 
-// copied from apache commons-io
 final class FileUtils {
 
     static void copyInputStreamToFile(InputStream source, File destination) throws IOException {

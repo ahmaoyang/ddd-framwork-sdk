@@ -23,7 +23,6 @@ public @interface DomainService {
     /**
      * 所属业务域.
      *
-     * @return {@link Domain#code()}
      */
     String domain();
 }

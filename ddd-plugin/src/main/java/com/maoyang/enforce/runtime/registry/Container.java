@@ -24,19 +24,6 @@ import java.util.*;
  * <p>
  * <p>{@code Container}常驻内存，{@code PluginJar}动态加载：动静分离</p>
  * <p>
- * <pre>
- *    +- 1 containerClassLoader
- *    |- 1 jdkClassLoader
- *    |- 1 containerApplicationContext
- *    |
- *    |                     +- pluginApplicationContext
- *    |                     |
- * Container ----> Plugin --+- pluginClassLoader
- *             N                    | loadClass
- *                        +---------------------+
- *                        |                     |
- *                  [Partner | Pattern]      Extension
- * </pre>
  */
 @Slf4j
 public final class Container {
