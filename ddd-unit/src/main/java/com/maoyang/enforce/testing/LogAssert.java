@@ -13,11 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A unit test assert tool: assert sth exists in log file: logs/app.log.
- * <p>
- * <p>IMPORTANT: LogAssert is stateful! Each assert will reach log EOF.</p>
- * <p>You cannot assert twice on the same log events state.</p>
- * <p>你需要配置{@code log4j2.xml}，以便把测试的日志输出到{@code logs/app.log}</p>
+ * 你需要配置{@code log4j2.xml}，以便把测试的日志输出到{@code logs/app.log}
  */
 public class LogAssert {
     private static final String logFile = "logs/app.log";
@@ -26,12 +22,7 @@ public class LogAssert {
     private LogAssert() {
     }
 
-    /**
-     * Assert that the log file not contains specified events(log message).
-     *
-     * @param events log message, a single log file line
-     * @throws IOException
-     */
+
     public static synchronized void assertNotContains(String... events) throws IOException {
         try {
             assertContains(events);
@@ -41,12 +32,6 @@ public class LogAssert {
         }
     }
 
-    /**
-     * Assert that the log file contains specified events(log message).
-     *
-     * @param events log message, a single log file line
-     * @throws IOException
-     */
     public static synchronized void assertContains(String... events) throws IOException {
         Set<String> expectedEvents = new HashSet<>(events.length);
         for (String event : events) {

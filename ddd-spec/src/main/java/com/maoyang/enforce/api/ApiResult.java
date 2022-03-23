@@ -29,9 +29,9 @@ public class ApiResult<T> implements Serializable {
     private T data;
 
     /**
-     * 预留的扩展属性.
-     * <p>
-     * <p>由consumer/provider自行约定扩展属性的内容</p>
+     * 预留的扩展属性，面对业务的需要可自行拓展
+     *
+     * 由consumer/provider自行约定扩展属性的内容
      */
     private Map<String, String> ext = new HashMap<>();
 

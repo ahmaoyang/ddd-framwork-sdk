@@ -14,7 +14,7 @@ import java.lang.annotation.*;
 /**
  * 扩展点定位策略，需要实现{@link IExtPolicy}接口.
  *
- * <p>一个扩展点定位策略，只能对应一个扩展点类型：从该扩展点的多个实例中选取一个.</p>
+ * 一个扩展点定位策略，只能对应一个扩展点类型：从该扩展点的多个实例中选取一个.
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

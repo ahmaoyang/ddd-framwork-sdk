@@ -53,13 +53,13 @@ public final class DDD {
     /**
      * 绕过 {@link BaseDomainAbility}，直接获取扩展点实例.
      *
-     * <p>有的控制点：</p>
-     * <ul>
-     * <li>不需要默认的扩展点实现</li>
-     * <li>不会有复杂的 {@link IReducer} 逻辑，取到第一个匹配的即可</li>
-     * <li>没有很强的业务属性：它可能是出于技术考虑而抽象出来的，而不是业务抽象</li>
-     * </ul>
-     * <p>这些场景下，{@link BaseDomainAbility} 显得有些多此一举，可直接使用 {@link DDDAbility#firstExtension(Class, IDomainModel)}</p>
+     * 有的控制点：
+     *
+     * 不需要默认的扩展点实现
+     * 不会有复杂的 {@link IReducer} 逻辑，取到第一个匹配的即可
+     * 没有很强的业务属性：它可能是出于技术考虑而抽象出来的，而不是业务抽象
+     *
+     * 这些场景下，{@link BaseDomainAbility} 显得有些多此一举，可直接使用 {@link DDDAbility#firstExtension(Class, IDomainModel)}
      *
      * @param extClazz 扩展点类型
      * @param model    领域模型，用于定位扩展点

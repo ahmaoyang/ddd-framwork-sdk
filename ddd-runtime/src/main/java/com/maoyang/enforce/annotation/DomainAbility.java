@@ -38,8 +38,8 @@ public @interface DomainAbility {
 
     /**
      * 该领域能力的业务标签.
-     * <p>
-     * <p>通过标签，把众多的扩展点管理起来，结构化</p>
+     *
+     * 通过标签，把众多的扩展点管理起来，结构化
      */
     String[] tags() default {};
 }

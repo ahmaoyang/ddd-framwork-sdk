@@ -56,7 +56,6 @@ final class JarUtils {
             JarEntry entry = (JarEntry) entries.nextElement();
             String className = getClassName(entry);
             if (className == null || className.isEmpty()) {
-                // not a class. e,g. META-INF
                 continue;
             }
 

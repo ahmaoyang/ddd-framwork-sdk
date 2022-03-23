@@ -21,9 +21,7 @@ import java.util.*;
 
 /**
  * 业务容器，用于动态加载个性化业务包：Plugin Jar.
- * <p>
- * <p>{@code Container}常驻内存，{@code PluginJar}动态加载：动静分离</p>
- * <p>
+ * Container常驻内存， PluginJar动态加载：动静分离
  */
 @Slf4j
 public final class Container {
@@ -33,7 +31,7 @@ public final class Container {
     private static final ClassLoader containerClassLoader = Container.class.getClassLoader();
     private static final ApplicationContext containerApplicationContext = DDDBootstrap.applicationContext();
 
-    private static final Map<String, IPlugin> activePlugins = new HashMap<>(); // has no concurrent scenarios: thread safe
+    private static final Map<String, IPlugin> activePlugins = new HashMap<>();
 
     private Container() {
     }
@@ -76,8 +74,8 @@ public final class Container {
 
     /**
      * 加载业务前台jar包，支持定制IContainerContext的实现.
-     * <p>
-     * <p>如果使用本动态加载，就不要maven里静态引入业务前台jar包依赖了.</p>
+     *
+     * 如果使用本动态加载，就不要maven里静态引入业务前台jar包依赖了.
      *
      * @param code      {@link IPlugin#getCode()}
      * @param version   version of the jar
@@ -115,8 +113,8 @@ public final class Container {
 
         /**
          * 加载业务前台jar包，使用默认的IContainerContext实现.
-         * <p>
-         * <p>如果使用本动态加载，就不要maven里静态引入业务前台jar包依赖了.</p>
+         *
+         * 如果使用本动态加载，就不要maven里静态引入业务前台jar包依赖了.
          *
          * @param code      {@link IPlugin#getCode()}
          * @param version   version of the jar
@@ -134,6 +132,10 @@ public final class Container {
         return File.createTempFile(prefix, "." + suffix);
     }
 
+    /**
+     * 初始化jdk类加载器
+     * @return
+     */
     private static ClassLoader initJDKClassLoader() {
         ClassLoader parent;
         for (parent = ClassLoader.getSystemClassLoader(); parent.getParent() != null; parent = parent.getParent()) {
@@ -141,9 +143,7 @@ public final class Container {
 
         List<URL> jdkUrls = new ArrayList<>(100);
         try {
-            // javaHome: /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home
             String javaHome = System.getProperty("java.home").replace(File.separator + "jre", "");
-            // search path of URLs for loading classes and resources
             URL[] urls = ((URLClassLoader) ClassLoader.getSystemClassLoader()).getURLs();
             for (URL url : urls) {
                 if (url.getPath().startsWith(javaHome)) {

@@ -27,8 +27,7 @@ public @interface Specification {
 
     /**
      * 该业务约束规则所属标签.
-     * <p>
-     * <p>通过标签，对业务约束规则进行归类</p>
+     * 通过标签，对业务约束规则进行归类
      */
     String[] tags() default {};
 

@@ -12,8 +12,8 @@ public interface IPluginListener {
 
     /**
      * 插件包prepare完成时触发.
-     * <p>
-     * <p>此时，插件包里的类刚刚加载和实例化，还没有被调用</p>
+     *
+     * 此时，插件包里的类刚刚加载和实例化，还没有被调用
      *
      * @param ctx 容器上下文
      * @throws Exception
@@ -22,8 +22,8 @@ public interface IPluginListener {
 
     /**
      * 插件包切换完成时触发.
-     * <p>
-     * <p>此时，相应的请求会发送该插件包里的类</p>
+     *
+     * 此时，相应的请求会发送该插件包里的类
      *
      * @param ctx 容器上下文
      * @throws Exception

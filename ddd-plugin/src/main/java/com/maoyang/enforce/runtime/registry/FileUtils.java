@@ -14,7 +14,7 @@ final class FileUtils {
             FileOutputStream output = openOutputStream(destination);
             try {
                 copy(source, output);
-                output.close(); // don't swallow close Exception if copy completes normally
+                output.close();
             } finally {
                 closeQuietly(output);
             }

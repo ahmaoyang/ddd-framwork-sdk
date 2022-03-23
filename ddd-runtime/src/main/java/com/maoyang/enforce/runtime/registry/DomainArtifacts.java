@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 
 /**
  * 对外输出的领域物件，即核心的领域抽象.
- * <p>
- * <p>方便上层集成，例如：构建配置中心，业务可视化平台等.</p>
- * <p>业务抽象的可视化，在构建业务系统时非常重要：平台能力可以透出，需求传递高效.</p>
+ *
+ * 方便上层集成，例如：构建配置中心，业务可视化平台等.
+ * 业务抽象的可视化，在构建业务系统时非常重要：平台能力可以透出，需求传递高效.
  */
 public class DomainArtifacts {
     private static final DomainArtifacts instance = new DomainArtifacts();
@@ -41,7 +41,7 @@ public class DomainArtifacts {
     /**
      * 获取单例的领域物件.
      *
-     * <p>通过领域物件，获取所有的业务元素：步骤，扩展点等</p>
+     * 通过领域物件，获取所有的业务元素：步骤，扩展点等
      */
     public static DomainArtifacts getInstance() {
         return instance;

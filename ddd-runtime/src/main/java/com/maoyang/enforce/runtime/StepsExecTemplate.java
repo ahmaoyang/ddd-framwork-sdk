@@ -35,9 +35,9 @@ public abstract class StepsExecTemplate<Step extends IDomainStep, Model extends 
 
     /**
      * 同步执行编排好的步骤.
-     * <p>
-     * <p>步骤的实现里，可以通过{@link IReviseStepsException}来进行后续步骤修订，即动态的步骤编排</p>
-     * <p>如果步骤实现了{@link IRevokableDomainStep}，在步骤抛出异常后会自动触发步骤回滚</p>
+     *
+     * 步骤的实现里，可以通过{@link IReviseStepsException}来进行后续步骤修订，即动态的步骤编排
+     * 如果步骤实现了{@link IRevokableDomainStep}，在步骤抛出异常后会自动触发步骤回滚
      *
      * @param activityCode 领域活动
      * @param stepCodes    待执行的的领域步骤
@@ -50,17 +50,15 @@ public abstract class StepsExecTemplate<Step extends IDomainStep, Model extends 
 
     /**
      * 执行编排好的步骤，支持异步执行指定的步骤.
-     * <p>
-     * <p>步骤的实现里，可以通过{@link IReviseStepsException}来进行后续步骤修订，即动态的步骤编排</p>
-     * <p>如果步骤实现了{@link IRevokableDomainStep}，在步骤抛出异常后会自动触发步骤回滚</p>
-     * <p>异步执行的步骤，注意事项：</p>
-     * <ul>
-     * <li>需要使用者保证线程安全性!</li>
-     * <li>beforeStep/afterStep的执行，都是同步的，都在主线程内执行</li>
-     * <li>异步执行的步骤的异常都被忽略，不会触发回滚</li>
-     * <li>不支持在异步执行的步骤里修订后续步骤</li>
-     * </ul>
-     * <p>In all, async steps executes in fire and forget mode!</p>
+     *
+     * 步骤的实现里，可以通过{@link IReviseStepsException}来进行后续步骤修订，即动态的步骤编排
+     * 如果步骤实现了{@link IRevokableDomainStep}，在步骤抛出异常后会自动触发步骤回滚
+     * 异步执行的步骤，注意事项：
+     *
+     * 需要使用者保证线程安全性!
+     * beforeStep/afterStep的执行，都是同步的，都在主线程内执行
+     * 异步执行的步骤的异常都被忽略，不会触发回滚
+     * 不支持在异步执行的步骤里修订后续步骤
      *
      * @param activityCode   领域活动
      * @param stepCodes      待执行的的领域步骤
@@ -91,7 +89,6 @@ public abstract class StepsExecTemplate<Step extends IDomainStep, Model extends 
         }
 
         if (stepRevisions == MAX_STEP_REVISIONS) {
-            // e,g. (a -> b(revise) -> a)
             log.error("Steps revision seem to encounter dead loop, abort after {} model:{}", stepRevisions, model);
             throw new RuntimeException("Seems steps dead loop, abort after " + MAX_STEP_REVISIONS);
         }
@@ -154,8 +151,6 @@ public abstract class StepsExecTemplate<Step extends IDomainStep, Model extends 
                     log.debug("will not rollback, {} thrown", cause.getClass().getCanonicalName());
                 }
             }
-
-            // cause thrown as it is
             throw cause;
         }
 
@@ -169,7 +164,7 @@ public abstract class StepsExecTemplate<Step extends IDomainStep, Model extends 
             // 如果业务系统有自己的ThreadLocal，可以通过 beforeStep/afterStep 机制进行处理
             MDC.setContextMap(mdcContext);
             try {
-                step.execute(model); // IMPORTANT: model must be thread safe!
+                step.execute(model);
             } finally {
                 MDC.clear();
             }
@@ -185,7 +180,8 @@ public abstract class StepsExecTemplate<Step extends IDomainStep, Model extends 
         }
         ResolvableType stepsExecType = ResolvableType.forClass(thisClass);
         ResolvableType templateType = stepsExecType.getSuperType();
-        // 处理StepsExecTemplate的多层继承 TODO 目前不够严谨，它假定了实现了IDomainStep的中间类不能再定义泛型
+        // 处理StepsExecTemplate的多层继承
+       //目前不够严谨，它假定了实现了IDomainStep的中间类不能再定义泛型(后期会去优化)
         while (templateType.getGenerics().length == 0) {
             templateType = templateType.getSuperType();
         }
@@ -200,14 +196,13 @@ public abstract class StepsExecTemplate<Step extends IDomainStep, Model extends 
             }
         }
 
-        // should never happen
         log.error("Cannot tell Step.Ex type for {}", this.getClass());
         return null;
     }
 
     private void safeRollbackExecutedSteps(Model model, RuntimeException cause, Stack<IRevokableDomainStep> executedSteps) {
         while (!executedSteps.isEmpty()) {
-            // 失败时，按照反方向执行回滚操作：Sagas Pattern, best effort
+            // 失败时，按照反方向执行回滚操作
             IRevokableDomainStep executedStep = executedSteps.pop();
             try {
                 executedStep.rollback(model, cause);

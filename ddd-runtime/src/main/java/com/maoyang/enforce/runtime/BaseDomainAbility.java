@@ -14,8 +14,8 @@ import javax.validation.constraints.NotNull;
 
 /**
  * 基础领域能力，是一种业务多态能力：业务扩展能力.
- * <p>
- * <p>{@code BaseDomainAbility}是最小粒度的{@link IDomainService}，只负责一个扩展点的编排</p>
+ *
+ * {@code BaseDomainAbility}是最小粒度的{@link IDomainService}，只负责一个扩展点的编排
  *
  * @param <Model> 领域模型
  * @param <Ext>   领域能力扩展点
@@ -24,8 +24,8 @@ public abstract class BaseDomainAbility<Model extends IDomainModel, Ext extends 
     
     /**
      * 定位指定的扩展点实例.
-     * <p>
-     * <p>可以通过{@link IReducer}实现多个扩展点的执行</p>
+     *
+     * 可以通过{@link IReducer}实现多个扩展点的执行
      *
      * @param model   领域模型
      * @param reducer 扩展点执行的归约器 如果为空，则等同于{@link #firstExtension(IDomainModel)}
@@ -39,9 +39,9 @@ public abstract class BaseDomainAbility<Model extends IDomainModel, Ext extends 
 
     /**
      * 找到第一个符合条件的扩展点实例.
-     * <p>
-     * <p>这表示：扩展点实例之间是互斥的，无法叠加的</p>
-     * <p>如果需要根据扩展点执行结果来找第一个匹配的扩展点实例，请使用{@link #getExtension(IDomainModel, IReducer)}</p>
+     *
+     * 这表示：扩展点实例之间是互斥的，无法叠加的
+     * 如果需要根据扩展点执行结果来找第一个匹配的扩展点实例，请使用{@link #getExtension(IDomainModel, IReducer)}
      *
      * @param model 领域模型
      * @return null if not found
@@ -52,9 +52,9 @@ public abstract class BaseDomainAbility<Model extends IDomainModel, Ext extends 
 
     /**
      * 找到第一个符合条件的扩展点实例，并指定扩展点最大执行时长，超时抛出{@link java.util.concurrent.TimeoutException}.
-     * <p>
-     * <p>这表示：扩展点实例之间是互斥的，无法叠加的</p>
-     * <p>如果需要根据扩展点执行结果来找第一个匹配的扩展点实例，请使用{@link #getExtension(IDomainModel, IReducer)}</p>
+     *
+     * 这表示：扩展点实例之间是互斥的，无法叠加的
+     * 如果需要根据扩展点执行结果来找第一个匹配的扩展点实例，请使用{@link #getExtension(IDomainModel, IReducer)}
      *
      * @param model       领域模型
      * @param timeoutInMs 执行扩展点的超时时间，in ms；如果超时，会强行终止扩展点的执行

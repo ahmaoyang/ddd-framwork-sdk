@@ -15,7 +15,8 @@ import java.net.URLClassLoader;
  */
 @Slf4j
 final class PluginClassLoader extends URLClassLoader {
-    private static final String dddPackage = "com.maoyang.enforce";
+
+    private static final String dddPackage = "com.maoyang.enforce"; //注意与项目中目录对应（com.maoyang.enforce 是demo 中的目录）
 
     private final ClassLoader jdkClassLoader;
     private final ClassLoader containerClassLoader;

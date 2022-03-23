@@ -10,8 +10,8 @@ import java.util.List;
 
 /**
  * A notification is an object that collects reason why specifications not satisfied.
- * <p>
- * <p>google Notification Pattern & Specification Pattern for more details</p>
+ *
+ * google Notification Pattern & Specification Pattern for more details
  */
 public class Notification {
 
@@ -31,8 +31,8 @@ public class Notification {
 
     /**
      * Add a reason why this specification not satisfied.
-     * <p>
-     * <p>Will filter out duplicated reason under the hood.</p>
+     *
+     * Will filter out duplicated reason under the hood.
      *
      * @param reason unsatisfaction reason. if null, will be ignored and return false
      * @return true if this {@code Notification} changed as a result of the call

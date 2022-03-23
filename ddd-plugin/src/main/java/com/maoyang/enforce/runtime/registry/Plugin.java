@@ -22,8 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
- * <p>基于 ClassLoader 实现的业务模块隔离，每个Plugin Jar可以有独立的Spring上下文.</p>
+ * 基于 ClassLoader 实现的业务模块隔离，每个Plugin Jar可以有独立的Spring上下文
  */
 @Slf4j
 class Plugin implements IPlugin {
@@ -32,9 +31,8 @@ class Plugin implements IPlugin {
     private final String code;
 
     @Getter
-    private final String version; // for rollback
+    private final String version; // for rollback  的版本号
 
-    // the shared class loaders
     private final ClassLoader jdkClassLoader;
     private final ClassLoader containerClassLoader;
 

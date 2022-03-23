@@ -12,8 +12,8 @@ public interface IStartupListener {
 
     /**
      * 启动时执行.
-     * <p>
-     * <p>触发时机：Spring加载完毕后</p>
+     *
+     * 触发时机：Spring加载完毕后
      */
     void onStartComplete();
 }
